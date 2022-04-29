@@ -1,5 +1,16 @@
-#include<stdio.h>
-int main()
+
+#include<linux/module.h>
+#include<linux/kernel.h>
+// MODULE_LICENSE("Dual BSD/GPL");
+static int hello_onInit()
 {
-    printf("\n[Linux] Hello, World!\n");
+    printk("<1>hello world init() ...");
+    return 0;
 };
+static void hello_onExit()
+{
+    printk("<1>hello world exit() ...");
+};
+module_init(hello_onInit);
+module_exit(hello_onExit);
+
